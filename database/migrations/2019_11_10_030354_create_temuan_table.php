@@ -18,11 +18,10 @@ class CreateTemuanTable extends Migration
             $table->string('pic')->nullable();
             $table->integer('tenggang_waktu')->nullable();
             $table->integer('nilai_rupiah')->nullable();
-            $table->string('status')->nullable();
-            $table->string('isi_temuan')->nullable();
+            $table->text('isi_temuan')->nullable();
             //
-            $table->integer('jenis_temuan_id')->unsigned()->nullable();
-            $table->foreign('jenis_temuan_id')->references('id')->on('jenis_temuan')->onDelete('cascade');
+            $table->integer('lhp_id')->unsigned()->nullable();
+            $table->foreign('lhp_id')->references('id')->on('lhp')->onDelete('cascade');
             //
             $table->timestamps();
         });

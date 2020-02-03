@@ -1,6 +1,10 @@
-@extends('layouts.app')
+<!-- <script type="text/javascript">
+    window.location.href='/login'
+</script> -->
 
-@section('content')
+@extends('layouts.master')
+
+@section('content2')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

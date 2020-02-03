@@ -3,36 +3,41 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\JenisTemuan;
+use \App\Temuan;
 use \App\Tindak;
 
 class TindakController extends Controller
 {
     public function index()
     {
-    	$jenis_temuan = JenisTemuan::all();
+        $welcome = 'Tindak Lanjut';
+    	$temuan = Temuan::all();
     	$data_tindak = Tindak::all();
 
-    	return view('tindak.index',['data_tindak' => $data_tindak, 'jenis_temuan' => $jenis_temuan]);
+    	return view('tindak.index',['data_tindak' => $data_tindak, 'temuan' => $temuan, 'welcome' => $welcome]);
     }
 
     public function create(Request $request)
     {
-        //$this->validate($request,[
-        //'lhp_id'        => 'required',
-        //'isi_tindak'    => 'required',
-        //]);
+        $messages = [
+        'required'  => ':attribute wajib diisi!',
+        ];
+
+        $this->validate($request,[
+        'jenis_temuan'  => 'min:3',
+        'isi_tindak'    => 'required',
+        ],$messages);
     	
         Tindak::create($request->all());
-        return redirect('/tindak');
+        return redirect('/tindak')->with('sukses','Data berhasil di input');
     }
 
     public function edit($id)
     {
-    	$jenis_temuan = JenisTemuan::all();
+    	$temuan = Temuan::all();
     	$tindak = Tindak::find($id);
 
-    	return view('tindak.edit',['jenis_temuan' => $jenis_temuan, 'tindak' => $tindak]);
+    	return view('tindak.edit',['temuan' => $temuan, 'tindak' => $tindak]);
     }
 
     public function update(Request $request,$id)
@@ -40,7 +45,7 @@ class TindakController extends Controller
     	$tindak = Tindak::find($id);
     	$tindak->update($request->all());
 
-    	return redirect('/tindak');
+    	return redirect('/tindak')->with('sukses', 'Data berhasil diperbarui');
     }
 
     public function del($id)
@@ -48,6 +53,6 @@ class TindakController extends Controller
     	$tindak = Tindak::find($id);
     	$tindak->delete($tindak);
 
-    	return redirect('/tindak');
+    	return redirect('/tindak')->with('sukses', 'Data berhasil dihapus');
     }
 }

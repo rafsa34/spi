@@ -16,10 +16,11 @@ class CreateTindakLanjutTable extends Migration
         Schema::create('tindak_lanjut', function (Blueprint $table) {
             $table->increments('id');
             //
-            $table->integer('jenis_temuan_id')->unsigned()->nullable();
-            $table->foreign('jenis_temuan_id')->references('id')->on('jenis_temuan')->onDelete('cascade');
+            $table->integer('temuan_id')->unsigned()->nullable();
+            $table->foreign('temuan_id')->references('id')->on('temuan')->onDelete('cascade');
             //
-            $table->string('isi_tindak')->nullable();
+            $table->string('status')->nullable();
+            $table->text('isi_tindak')->nullable();
             $table->timestamps();
         });
     }

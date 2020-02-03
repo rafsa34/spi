@@ -31,4 +31,15 @@ class Lhp extends Model
     {
     	return $this->belongsTo('\App\Monitor');
     }
+
+    // public function getNoLhpAttribute()
+    // {
+    //     $no_lhp = "";
+    //     if($no_lhp == "")
+    //     {
+    //         return "<button type='button' class='btn btn-danger btn-xs'><i class='fa fa-times'></i></button>";
+    //     }else{
+    //         return "<button type='button' class='btn btn-success btn-xs'><i class='fa fa-check'></i></button>";
+    //     }
+    // }
 }

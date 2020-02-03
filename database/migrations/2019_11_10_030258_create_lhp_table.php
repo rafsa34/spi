@@ -24,11 +24,11 @@ class CreateLhpTable extends Migration
             //
             $table->string('jenis_monitor')->nullable();
             $table->string('no_lhp')->nullable();
-            $table->date('tgl_pemeriksaan')->nullable();
+            $table->text('tgl_pemeriksaan')->nullable();
             $table->string('no_surat_direksi')->nullable();
             $table->date('tgl_surat_direksi')->nullable();
             $table->string('no_surat_penegasan')->nullable();
-            $table->date('tgl_surat_penegaran')->nullable();
+            $table->date('tgl_surat_penegasan')->nullable();
             $table->string('no_tindak_lanjut')->nullable();
             $table->date('tgl_tindak_lanjut')->nullable();
             $table->string('file')->nullable();

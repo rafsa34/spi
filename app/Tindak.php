@@ -8,12 +8,14 @@ class Tindak extends Model
 {
     protected $table = 'tindak_lanjut';
     protected $fillable = [
-    'jenis_temuan_id',
+    'temuan_id',
+    'status',
     'isi_tindak',
+    'isi_temuan'
 ];
 
-    public function JenisTemuan()
+    public function temuan()
     {
-    	return $this->belongsTo('App\JenisTemuan');
+    	return $this->belongsTo('App\Temuan');
     }
 }

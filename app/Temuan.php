@@ -8,17 +8,16 @@ class Temuan extends Model
 {
     protected $table = 'temuan';
     protected $fillable = [
-    	'jenis_temuan_id',
+    	'lhp_id',
     	'pic',
     	'tenggang_waktu',
     	'nilai_rupiah',
-    	'status',
     	'isi_temuan',
-        'jenis_temuan'
+        'no_lhp'
     ];
 
-    public function JenisTemuan()
+    public function lhp()
     {
-    	return $this->belongsTo('App\JenisTemuan');
+    	return $this->belongsTo('App\Lhp');
     }
 }

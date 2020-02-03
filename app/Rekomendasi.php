@@ -8,12 +8,14 @@ class Rekomendasi extends Model
 {
     protected $table = 'rekomendasi';
     protected $fillable = [
-    	'jenis_temuan_id',
-    	'isi_rekomendasi'
+    	'temuan_id',
+    	'isi_rekomendasi',
+    	'isi_temuan',
+        'status',
     ];
 
-    public function JenisTemuan()
+    public function temuan()
     {
-    	return $this->belongsTo('App\JenisTemuan');
+    	return $this->belongsTo('App\Temuan');
     }
 }

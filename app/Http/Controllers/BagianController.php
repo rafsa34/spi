@@ -10,40 +10,52 @@ class BagianController extends Controller
 {
     public function index()
     {
-    	$data_bagian = Bagian::paginate(5);
+        $welcome = 'Bagian';
+    	$data_bagian = Bagian::all();
 //        dd($data_bagian);
-    	return view('bagian/index',['data_bagian' => $data_bagian]);
+    	return view('bagian/index',['data_bagian' => $data_bagian, 'welcome' => $welcome]);
     }
     
-    public function create(Request $request) 		// C R E A T E //
+    public function create(Request $request) 	
     {
+        $messages = [
+            'required'  => ':attribute wajib diisi!',
+            'min'       => ':attribute harus diisi minimal :min karakter!',
+            'max'       => ':attribute harus diisi maksimal :max karakter!',
+        ];
         $this->validate($request,[
         'nama_bagian'   => 'required|min:3',
-        'kode'          => 'required',
-        ]);
+        'kode'          => 'required|min:3',
+        ],$messages);
 
-    	\App\Bagian::create($request->all());
-    	return redirect('/bagian');
+    	Bagian::create($request->all());
+    	return redirect('/bagian')->with('sukses', 'Data berhasil di input');
     }
 
-    public function edit($id)						// E D I T //
+    public function edit($id)					
     {
-    	$bagian = \App\Bagian::find($id);
-    	return view('bagian.edit',['bagian' => $bagian]);
+        $welcome = 'Bagian';
+    	$bagian = Bagian::find($id);
+    	return view('bagian.edit',['bagian' => $bagian, 'welcome' => $welcome]);
     }
 
-    public function update(Request $request,$id)	// U P D A T E //
+    public function update(Request $request,$id)
     {
-    	$bagian = \App\Bagian::find($id);
+    	$bagian = Bagian::find($id);
         $bagian->update($request->all());
-        return redirect('/bagian');
+        return redirect('/bagian')->with('sukses', 'Data berhasil diperbarui')->with('sukses', 'Data berhasil diperbarui');
     }
 
-	public function del($id)						// D E L E T E //
+	public function del($id)					
     {
-    	$bagian = \App\Bagian::find($id);
+    	$bagian = Bagian::find($id);
     	$bagian->delete($bagian);
-    	return redirect('/bagian');
+    	return redirect('/bagian')->with('sukses', 'Data berhasil dihapus');
+    }
+
+    public function content2()
+    {
+        return view('content2');
     }
 
 }

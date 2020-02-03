@@ -16,10 +16,11 @@ class CreateRekomendasiTable extends Migration
         Schema::create('rekomendasi', function (Blueprint $table) {
             $table->increments('id');
             //
-            $table->integer('jenis_temuan_id')->unsigned()->nullable();
-            $table->foreign('jenis_temuan_id')->references('id')->on('jenis_temuan')->onDelete('cascade');
+            $table->integer('temuan_id')->unsigned()->nullable();
+            $table->foreign('temuan_id')->references('id')->on('temuan')->onDelete('cascade');
             //
-            $table->string('isi_rekomendasi')->nullable();
+            $table->text('isi_rekomendasi')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
